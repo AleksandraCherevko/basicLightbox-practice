@@ -67,4 +67,13 @@ function handleProductClick(event) {
   const productId = currentProduct.dataset.id;
   const product = products.find((item) => item.id === Number(productId));
   console.log(product);
+
+  const instance = basicLightbox.create(` <div class="modal">
+<img src="${product.img}" alt="${product.name}" />
+<h2>${product.name}</h2>
+<h3>${product.price}</h3>
+<p>${product.description}</p>
+</div> `);
+
+  instance.show();
 }
