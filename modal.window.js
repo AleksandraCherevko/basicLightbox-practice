@@ -48,12 +48,12 @@ productListEl.addEventListener("click", handleProductClick);
 function createMarkup(array) {
   return array
     .map(
-      (product) => `
-      <li class='item product-item' data-id=${product.id}> 
-      <img src="${product.img}" alt="${product.name}" width = '300px'>
-      <h2>${product.name}</h2>
-      <p>Count: ${product.price} UAH </p>
-    </li> `
+      (product) => ` <li class='item product-item' data-id=${product.id}>
+ <img src="${product.img}" alt="${product.name}" width = '300px'>
+ <h2>${product.name}</h2>
+<p>Count: ${product.price} UAH </p>
+</li> 
+  `
     )
     .join("");
 }
@@ -64,16 +64,53 @@ function handleProductClick(event) {
   }
 
   const currentProduct = event.target.closest(".product-item");
-  const productId = currentProduct.dataset.id;
-  const product = products.find((item) => item.id === Number(productId));
-  console.log(product);
+  const currentId = currentProduct.dataset.id;
+  const product = products.find((item) => item.id === Number(currentId));
 
-  const instance = basicLightbox.create(` <div class="modal">
-<img src="${product.img}" alt="${product.name}" />
-<h2>${product.name}</h2>
-<h3>${product.price}</h3>
-<p>${product.description}</p>
-</div> `);
+  const instance = basicLightbox.create(
+    ` <div class='modal'>
+  <img src="${product.img}" alt="${product.name}" width = '300px'>
+  <h2>${product.name}</h2>
+  <p>Count: ${product.price} UAH </p>
+  </div> 
+  `
+  );
 
   instance.show();
 }
+
+// productListEl.insertAdjacentHTML("beforeend", createMarkup(products));
+// productListEl.addEventListener("click", handleProductClick);
+
+// function createMarkup(array) {
+//   return array
+//     .map(
+//       (product) => `
+//       <li class='item product-item' data-id=${product.id}>
+//       <img src="${product.img}" alt="${product.name}" width = '300px'>
+//       <h2>${product.name}</h2>
+//       <p>Count: ${product.price} UAH </p>
+//     </li> `
+//     )
+//     .join("");
+// }
+
+// function handleProductClick(event) {
+//   if (event.target === event.currentTarget) {
+//     return;
+//   }
+
+//   const currentProduct = event.target.closest(".product-item");
+//   const productId = currentProduct.dataset.id;
+//   const product = products.find((item) => item.id === Number(productId));
+//   console.log(product);
+
+//   const instance = basicLightbox.create(` <div class="modal">
+// <img src="${product.img}" alt="${product.name}" />
+// <h2>${product.name}</h2>
+// <h3>${product.price}</h3>
+// <p>${product.description}</p>
+// </div> `);
+
+//   instance.show();
+// }
